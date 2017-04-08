@@ -1,0 +1,22 @@
+int yellowpin= 2;
+int redpin = 7;
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(yellowpin, OUTPUT);
+  pinMode(redpin, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for(int i=0; i<=9;i++){
+    digitalWrite(yellowpin, HIGH);
+    delay(100);
+    digitalWrite(yellowpin, LOW);
+    delay(100);
+    }
+    
+  digitalWrite(redpin, HIGH);
+  delay(100);
+  digitalWrite(redpin, LOW);
+  delay(100);
+}
