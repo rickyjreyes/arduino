@@ -1,0 +1,9 @@
+# Local compilation output and editor state
+build/
+*.hex
+*.elf
+*.bin
+*.map
+.vscode/
+.idea/
+.DS_Store

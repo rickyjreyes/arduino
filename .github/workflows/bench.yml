@@ -1,0 +1,27 @@
+name: Arduino bench checks
+on:
+  push:
+  pull_request:
+
+jobs:
+  native-logic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and execute portable logic assertions
+        run: |
+          g++ -std=c++11 -Wall -Wextra -Werror -pedantic tests/test_bench.cpp -o /tmp/hachi-bench-tests
+          /tmp/hachi-bench-tests
+  uno-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+      - name: Install official AVR platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+      - name: Compile sketches independently for Uno
+        run: |
+          arduino-cli compile --warnings all --fqbn arduino:avr:uno firmware/LEDSequence
+          arduino-cli compile --warnings all --fqbn arduino:avr:uno firmware/HachiIOBench
